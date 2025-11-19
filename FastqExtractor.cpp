@@ -48,7 +48,7 @@ static struct option long_options[] = {
 
 char buffer[100001] ;
 char seqBuffer[100001] ;
-char nucToNum[26] = { 0, -1, 1, -1, -1, -1, 2, 
+signed char nucToNum[26] = { 0, -1, 1, -1, -1, -1, 2, 
 	-1, -1, -1, -1, -1, -1, 0,
 	-1, -1, -1, -1, -1, 3,
 	-1, -1, -1, -1, -1, -1 } ;

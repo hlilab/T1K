@@ -31,7 +31,7 @@ char usage[] = "./analyzer [OPTIONS]:\n"
     "\t--varMaxGroup INT: the maximum variant group size to call novel variant. -1 for no limitation (default: 8)\n"
 		;
 
-char nucToNum[26] = { 0, -1, 1, -1, -1, -1, 2, 
+signed char nucToNum[26] = { 0, -1, 1, -1, -1, -1, 2, 
 	-1, -1, -1, -1, -1, -1, -1,
 	-1, -1, -1, -1, -1, 3,
 	-1, -1, -1, -1, -1, -1 } ;

@@ -34,7 +34,7 @@ char usage[] = "./genotyper [OPTIONS]:\n"
 		"\t--squaremMinAlpha FLOAT: minimum value, should be negative, for the alpha (step length) in the SQUAREM algorithm (default: not set.)\n"
 		;
 
-char nucToNum[26] = { 0, -1, 1, -1, -1, -1, 2, 
+signed char nucToNum[26] = { 0, -1, 1, -1, -1, -1, 2, 
 	-1, -1, -1, -1, -1, -1, -1,
 	-1, -1, -1, -1, -1, 3,
 	-1, -1, -1, -1, -1, -1 } ;
