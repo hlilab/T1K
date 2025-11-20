@@ -112,10 +112,10 @@ private:
 			r = strdup(read) ;
 			refSet.ReverseComplement(r, read, readLen) ;
 		}
-		char *align = o.align ;
+		signed char *align = o.align ;
 		if (align == NULL)
 		{
-		  char *align = new char[ 3 * readLen + 2 ] ;
+		  signed char *align = new signed char[ 3 * readLen + 2 ] ;
 			AlignAlgo::GlobalAlignment( refSet.GetSeqConsensus(o.seqIdx) + o.seqStart, 
 				o.seqEnd - o.seqStart + 1,
 				r + o.readStart,
@@ -552,7 +552,7 @@ public:
 				for (i = 0 ; i < assignCnt ; ++i)
 				{
 					struct _overlap o = SelectOverlapFromFragmentOverlap(k, fragmentAssignment[i]) ;
-					char *align = o.align ;
+					signed char *align = o.align ;
 
 					while (align[alignIdx[i]] != -1
 							&& readPos[i] <= j)
@@ -633,7 +633,7 @@ public:
 					r = rc ;
 				int refPos = o.seqStart ;
 				int readPos = o.readStart ;
-				char *align = o.align ;
+				signed char *align = o.align ;
 				for (j = 0 ; align[j] != -1 ; ++j)
 				{
 					int cid = baseVariants[seqIdx][refPos].candidateId ;
@@ -1260,7 +1260,7 @@ public:
 					r = rc ;
 				}
 				
-				char *align = o.align ;
+				signed char *align = o.align ;
 				int readPos = o.readStart ;
 				int refPos = o.seqStart ;
 				int seqIdx = o.seqIdx ;

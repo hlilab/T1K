@@ -98,7 +98,7 @@ struct _overlap
 	int leftClip, rightClip ;
 	int relaxedMatchCnt ; // the number of matches regarding the intronic mismatch as all match
 	
-	char *align ;
+	signed char *align ;
 	
 	bool operator<( const struct _overlap &b ) const
 	{
@@ -435,7 +435,7 @@ private:
 		return ret ;
 	}
 
-	void GetAlignStats( char *align, bool update, int &matchCnt, int &mismatchCnt, int &indelCnt)
+	void GetAlignStats( signed char *align, bool update, int &matchCnt, int &mismatchCnt, int &indelCnt)
 	{
 		int k ;
 		if ( !update )
@@ -1695,7 +1695,7 @@ public:
 			}
 			
 			matchCnt += 2 * kmerLength ;
-			char *align = new char[ overlaps[i].readEnd - overlaps[i].readStart + 1 + 
+			signed char *align = new signed char[ overlaps[i].readEnd - overlaps[i].readStart + 1 + 
 				overlaps[i].seqEnd - overlaps[i].seqStart + 1 + 1] ;
 			for ( j = 1 ; j < hitCnt ; ++j )
 			{
@@ -1992,7 +1992,7 @@ public:
 	// Extend the overlap to include the overhang parts and filter the overlaps if the overhang does not match well.
 	// return: whether this is a valid extension or not
 	int ExtendOverlap( char *r, int len, struct _seqWrapper &seq,
-		char *align, struct _overlap &overlap, struct _overlap &extendedOverlap )
+		signed char *align, struct _overlap &overlap, struct _overlap &extendedOverlap )
 	{
 		// Check whether the overhang part is compatible with each other or not.
 		// Extension to 5'-end ( left end )
@@ -2151,7 +2151,7 @@ public:
 		std::vector<struct _overlap> extendedOverlaps ;
 		struct _overlap eOverlap ;
 
-		char *align = new char[ 3 * len + 2 ] ;
+		signed char *align = new signed char[ 3 * len + 2 ] ;
 
 		int extendCnt = 0 ;
 		bool onlyConsiderClip = false ;
@@ -2667,7 +2667,7 @@ public:
 			ReverseComplement(r, read, readLen) ;
 		}
 
-		char *align = new char[ 3 * readLen + 2 ] ;
+		signed char *align = new signed char[ 3 * readLen + 2 ] ;
 		struct _seqWrapper &seq = seqs[o.seqIdx] ;
 		AlignAlgo::GlobalAlignment( seq.consensus + o.seqStart, 
 				o.seqEnd - o.seqStart + 1,

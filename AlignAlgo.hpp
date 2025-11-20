@@ -54,7 +54,7 @@ private:
 		return false ;
 	}
 public:
-	static double GlobalAlignment_PosWeight( struct _posWeight *tWeights, int lent, char *p, int lenp, char *align ) 
+	static double GlobalAlignment_PosWeight( struct _posWeight *tWeights, int lent, char *p, int lenp, signed char *align ) 
 	{
 		if ( lent == 0 || lenp == 0 )
 		{
@@ -212,7 +212,7 @@ public:
 		return ret ;
 	}
 		
-	static int GlobalAlignment( char *t, int lent, char *p, int lenp, char *align, int band = 5 )
+	static int GlobalAlignment( char *t, int lent, char *p, int lenp, signed char *align, int band = 5 )
 	{
 		if ( lent == 0 || lenp == 0 )
 		{
@@ -421,7 +421,7 @@ public:
 	}
 	
 	// Allow free mismatches at the beginning of t and p.
-	static int SemiGlobalAlignment( char *t, int lent, char *p, int lenp, char *align, int band = 5 )
+	static int SemiGlobalAlignment( char *t, int lent, char *p, int lenp, signed char *align, int band = 5 )
 	{
 		if ( lent == 0 || lenp == 0 )
 		{
@@ -629,7 +629,7 @@ public:
 		return ret ;
 	}
 
-	static int GlobalAlignment_PosWeight_Affine( struct _posWeight *tWeights, int lent, char *p, int lenp, char *align )
+	static int GlobalAlignment_PosWeight_Affine( struct _posWeight *tWeights, int lent, char *p, int lenp, signed char *align )
 	{
 		if ( lent == 0 || lenp == 0 )
 		{
@@ -832,7 +832,7 @@ public:
 	// Semi-global alignment where one end is matched, the other side is free.
 	//   the alignment score should be at least threshold
 	//   if threshold negative, the pattern should reach end as well.
-	static int GlobalAlignment_OneEnd( char *t, int lent, char *p, int lenp, int threshold, double scoreThresholdFactor, char *align )
+	static int GlobalAlignment_OneEnd( char *t, int lent, char *p, int lenp, int threshold, double scoreThresholdFactor, signed char *align )
 	{
 		int *m, *e, *f ;
 		if ( lent == 0 || lenp == 0 )
@@ -1022,7 +1022,7 @@ public:
 	
 	
 	
-	static double GlobalAlignment_classic( char *t, int lent, char *p, int lenp, char *align ) 
+	static double GlobalAlignment_classic( char *t, int lent, char *p, int lenp, signed char *align ) 
 	{
 		int i, j ;
 		int *score = new int[ ( lenp + 1 ) * ( lent + 1 ) ] ;
@@ -1091,7 +1091,7 @@ public:
 		return score[lenp * bmax + lent] ;
 	}
 	
-	static int LocalAlignment( char *t, int lent, char *p, int lenp, int &tstart, int &pstart, char *align )
+	static int LocalAlignment( char *t, int lent, char *p, int lenp, int &tstart, int &pstart, signed char *align )
 	{
 		int i, j ;
 		int *m = new int[ ( lenp + 1 ) * ( lent + 1 ) ] ;
@@ -1184,7 +1184,7 @@ public:
 		return maxScore ;
 	}
 
-	static void VisualizeAlignment( char *t, int lent, char *p, int lenp, char *align )
+	static void VisualizeAlignment( char *t, int lent, char *p, int lenp, signed char *align )
 	{
 		int i, k, j;
 		int tagt, tagp, taga ;
