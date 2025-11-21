@@ -5,7 +5,7 @@
 
 //#define DEBUG
 
-extern char nucToNum[26] ; 
+extern signed char nucToNum[26] ; 
 extern char numToNuc[4] ;
 
 #define MAX(x,y) (((x)>(y))?(x):(y))
