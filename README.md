@@ -14,13 +14,13 @@ Includes portions copyright from:
 
 ### What is T1K?
 
-T1K (The ONE genotyper for Kir and HLA) is a computational tool to infer the alleles for the polymorphic genes such as KIR and HLA. T1K calculates the allele abundances based on the RNA-seq/WES/WGS read alignments on the provided allele reference sequences. The abundances are used to pick the true alleles for each gene. T1K provides the post analysis steps, including novel SNP detection and single-cell representation. T1K supports both single-end and paired-end sequencing data with any read length.   
+T1K (The ONE genotyper for Kir and HLA) is a computational tool to infer the alleles for the polymorphic genes such as KIR and HLA. T1K calculates the allele abundances based on the RNA-seq/WES/WGS read alignments on the provided allele reference sequences. The abundances are used to pick the true alleles for each gene. T1K provides the post-analysis steps, including novel SNP detection and single-cell representation. T1K supports both single-end and paired-end sequencing data with any read length.   
 
 ### Install
 
 1. Clone the [GitHub repo](https://github.com/mourisl/T1K), e.g. with `git clone https://github.com/mourisl/T1K.git`
 2. Run `make` in the repo directory
-3. Generate the allele reference sequences of IPD-IMGT/HLA and IPD-KIR datbases:
+3. Generate the allele reference sequences of IPD-IMGT/HLA and IPD-KIR databases:
 ```
 	perl t1k-build.pl -o hlaidx --download IPD-IMGT/HLA
 	perl t1k-build.pl -o kiridx --download IPD-KIR 
@@ -69,12 +69,12 @@ T1K is also available from [Bioconda](https://bioconda.github.io/recipes/t1k/REA
 			kir-wgs: KIR genotyping on WGS data
 			kir-wes: KIR genotyping on WES data
 		--noExtraction: directly use the files from provided -1 -2/-u for genotyping (default: extraction first)
-		--skipPostAnalysis: only conduct genotyping. (default: do the post analysis)
+		--skipPostAnalysis: only conduct genotyping. (default: do the post-analysis)
 		--stage INT: start genotyping on specified stage (default: 0):
 			0: start from beginning (candidate read extraction)
 			1: start from genotype with candidate reads
-			2: start from post analysis
-		Parameters for post analysis:
+			2: start from post-analysis
+		Parameters for post-analysis:
 			--post-varMaxGroup INT: the maximum variant group size to call novel variant. -1 for no limitation (default: 8)
 
 * ##### User cases 
@@ -97,11 +97,11 @@ T1K outputs several files. t1k_genotype.tsv is the main output file holding the 
 
 In the case of missing alleles or homozygous alleles, the triple (allele, abundance, quality) will be ". 0 -1" as place holders. **We recommend to ignore alleles with quality less or equal to 0**. The last column is the secondary alleles, that meet the abundance filtering critera but filtered by the tie breaking procedure. The secondary alleles is "|" separated fields, and each field is separated to three subfields by ";" for allele, abundance and quality.  
 
-The other outputs files are: 
+The other output files are: 
 
 * t1k_candidate{_1/_2}.fq: the candidate reads extracted from raw data for genotyping
 * t1k_aligned{_1/_2}.fq: the reads can be aligned to some alleles during genotyping 
-* t1k_allele.vcf: the novel SNPs. Quality value "FAIL" represents ambiguous SNPs. The coordinates are with respected to the mRNA sequence (concatenation of the exons), even when genotyping WES/WGS data. 
+* t1k_allele.vcf: the novel SNPs. Quality value "FAIL" represents ambiguous SNPs. The coordinates are with respect to the mRNA sequence (concatenation of the exons), even when genotyping WES/WGS data. 
 * t1k_allele.tsv: the representative alleles with all fields and its quality score. Note that this file is to be used with t1k_allele.vcf. The fields corresponding to intronic variations might be wrong. The genotyping result should be read from t1k_genotype.tsv file.
 
 ### Practical notes
@@ -111,7 +111,7 @@ The other outputs files are:
 Databases like PharmVar represent the variations of the alleles in the form of VCF file. T1K provides the scripts for generating the EMBL-ENA formatted dat file from VCF files. The dat file can then be used in "t1k-build" to create the reference files. Please refer to the tutorial in the vcf_database folder.
 
 * #### Custom database with known sequences
-If you have collected the linear sequences for the interested alleles, you can directly build the reference sequence. The allele name should be in the formation like "gene_name\*ABCDEFG". T1K reports the genotype at the allele series level, so by default it will report the allele "gene_name\*ABC" using three digits. If you have a special format for allele ids, you can feed the information to T1K throught the option "--alleleDigitUnits" and "--alleleDigitDelimiter". For example, the delimiter in HLA allele is ":", and if you want to genotype with first four digits (two digit units/groups), you can run T1K with options "--alleleDigitUnits 2 --alleleDigitDelimiter :".
+If you have collected the linear sequences for the interested alleles, you can directly build the reference sequence. The allele name should be in the formation like "gene_name\*ABCDEFG". T1K reports the genotype at the allele series level, so by default it will report the allele "gene_name\*ABC" using three digits. If you have a special format for allele ids, you can feed the information to T1K through the option "--alleleDigitUnits" and "--alleleDigitDelimiter". For example, the delimiter in HLA allele is ":", and if you want to genotype with first four digits (two digit units/groups), you can run T1K with options "--alleleDigitUnits 2 --alleleDigitDelimiter :".
 
 * #### SMART-Seq data
 
