@@ -372,7 +372,7 @@ public:
 			{
 				int seqIdx = fragmentAssignment[i].seqIdx ;
 				struct _overlap o = SelectOverlapFromFragmentOverlap(k, fragmentAssignment[i]) ;
-				if (containCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx])) ;
+				if (containCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx]))
 					break ;
 			}
 
@@ -608,7 +608,7 @@ public:
 			{
 				int seqIdx = fragmentAssignment[i].seqIdx ;
 				struct _overlap o = SelectOverlapFromFragmentOverlap(k, fragmentAssignment[i]) ;
-				if (containCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx])) ;
+				if (containCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx])) 
 					break ;
 			}
 
