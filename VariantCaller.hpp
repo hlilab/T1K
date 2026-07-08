@@ -179,7 +179,7 @@ private:
 		return gid ;
 	}*/
 	
-	bool containCandidateVar(int start, int end, SimpleVector<int> &candidateVarAccuCount)
+	bool ContainCandidateVar(int start, int end, SimpleVector<int> &candidateVarAccuCount)
 	{
 		/*if (start == 0)
 		{
@@ -372,7 +372,7 @@ public:
 			{
 				int seqIdx = fragmentAssignment[i].seqIdx ;
 				struct _overlap o = SelectOverlapFromFragmentOverlap(k, fragmentAssignment[i]) ;
-				if (containCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx]))
+				if (ContainCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx])) 
 					break ;
 			}
 
@@ -608,7 +608,7 @@ public:
 			{
 				int seqIdx = fragmentAssignment[i].seqIdx ;
 				struct _overlap o = SelectOverlapFromFragmentOverlap(k, fragmentAssignment[i]) ;
-				if (containCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx])) 
+				if (ContainCandidateVar(o.seqStart, o.seqEnd, seqCandidateAccuCount[seqIdx])) 
 					break ;
 			}
 
